@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nexo | Agencia creativa digital</title>
+  <!-- Fuente moderna & íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #ffffff;
+      color: #1e1e2f;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header / Navegación */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 10px rgba(0,0,0,0.02);
+      z-index: 10;
+      padding: 20px 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #0f172a, #3b3b6d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #0f172a;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #0f172a;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-primario {
+      background: #0f172a;
+      color: white !important;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: background 0.25s ease, transform 0.15s ease;
+      box-shadow: 0 4px 12px rgba(15,23,42,0.1);
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primario:hover {
+      background: #1e293b;
+      transform: translateY(-2px);
+    }
+
+    /* Hero section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 80px 0;
+      flex-wrap: wrap;
+    }
+
+    .hero-texto {
+      flex: 1 1 500px;
+    }
+
+    .hero-texto h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: #0f172a;
+      margin-bottom: 24px;
+    }
+
+    .hero-texto .gradiente {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-texto p {
+      font-size: 18px;
+      color: #475569;
+      margin-bottom: 36px;
+      max-width: 500px;
+    }
+
+    .hero-imagen {
+      flex: 1 1 400px;
+      background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+      border-radius: 32px;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-imagen i {
+      font-size: 120px;
+      color: #0f172a;
+      opacity: 0.9;
+    }
+
+    .hero-imagen:hover {
+      transform: scale(1.02);
+    }
+
+    .botones-hero {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secundario {
+      background: transparent;
+      border: 1.5px solid #cbd5e1;
+      color: #0f172a;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secundario:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    /* Sección servicios */
+    .servicios {
+      padding: 80px 0;
+      background: #f8fafc;
+      border-radius: 40px 40px 0 0;
+      margin-top: 20px;
+    }
+
+    .seccion-titulo {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .seccion-titulo h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+      margin-bottom: 12px;
+    }
+
+    .seccion-titulo p {
+      color: #475569;
+      font-size: 18px;
+    }
+
+    .grid-servicios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .tarjeta-servicio {
+      background: white;
+      padding: 36px 28px;
+      border-radius: 28px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+      text-align: left;
+      border: 1px solid #f1f5f9;
+    }
+
+    .tarjeta-servicio:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 35px -10px rgba(0,0,0,0.08);
+      border-color: #e2e8f0;
+    }
+
+    .tarjeta-servicio i {
+      font-size: 36px;
+      color: #2563eb;
+      margin-bottom: 24px;
+      background: #eff6ff;
+      padding: 14px;
+      border-radius: 18px;
+    }
+
+    .tarjeta-servicio h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #0f172a;
+    }
+
+    .tarjeta-servicio p {
+      color: #475569;
+      font-size: 15px;
+    }
+
+    /* Portafolio / proyectos */
+    .portafolio {
+      padding: 80px 0;
+    }
+
+    .grid-proyectos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+
+    .proyecto-card {
+      background: #f1f5f9;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: 0.25s ease;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .proyecto-card:hover {
+      box-shadow: 0 20px 30px rgba(0,0,0,0.08);
+      transform: translateY(-5px);
+    }
+
+    .proyecto-img {
+      height: 200px;
+      background: linear-gradient(135deg, #dbeafe, #ede9fe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: #1e3a8a;
+    }
+
+    .proyecto-info {
+      padding: 24px;
+      background: white;
+    }
+
+    .proyecto-info h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .proyecto-info span {
+      color: #475569;
+      font-size: 14px;
+      background: #f1f5f9;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* Contacto / footer */
+    .contacto {
+      background: #0f172a;
+      color: white;
+      padding: 70px 0 40px;
+      border-radius: 40px 40px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 12px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: white;
+    }
+
+    .iconos-sociales {
+      display: flex;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .iconos-sociales a {
+      color: #cbd5e1;
+      font-size: 22px;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .iconos-sociales a:hover {
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .copyright {
+      border-top: 1px solid #334155;
+      padding-top: 28px;
+      text-align: center;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+      .nav-links {
+        gap: 20px;
+      }
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-texto p {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .botones-hero {
+        justify-content: center;
+      }
+      .hero-imagen {
+        height: 280px;
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a:not(.btn-primario) {
+        display: none;
+      }
+      .logo {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-bar">
+      <div class="logo">◈ nexo</div>
+      <div class="nav-links">
+        <a href="#">Inicio</a>
+        <a href="#">Servicios</a>
+        <a href="#">Proyectos</a>
+        <a href="#">Contacto</a>
+        <a href="#" class="btn-primario">Empecemos</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="container hero">
+      <div class="hero-texto">
+        <h1>
+          Creamos el <span class="gradiente">futuro digital</span> de tu marca
+        </h1>
+        <p>
+          Diseño, desarrollo y estrategia creativa para conectar con tu audiencia. Transformamos ideas en experiencias que importan.
+        </p>
+        <div class="botones-hero">
+          <a href="#" class="btn-primario"><i class="fas fa-rocket" style="margin-right: 8px;"></i>Ver portafolio</a>
+          <a href="#" class="btn-secundario"><i class="far fa-comment"></i> Conversemos</a>
+        </div>
+      </div>
+      <div class="hero-imagen">
+        <i class="fas fa-cube"></i>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="servicios">
+      <div class="container">
+        <div class="seccion-titulo">
+          <h2>Lo que hacemos</h2>
+          <p>Soluciones integrales para cada desafío digital</p>
+        </div>
+        <div class="grid-servicios">
+          <div class="tarjeta-servicio">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Desarrollo Web</h3>
+            <p>Sitios rápidos, responsivos y escalables con tecnologías modernas. Desde landing pages hasta plataformas complejas.</p>
+          </div>
+          <div class="tarjeta-servicio">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Apps Móviles</h3>
+            <p>Experiencias nativas e híbridas para iOS y Android. Diseño centrado en el usuario y rendimiento óptimo.</p>
+          </div>
+          <div class="tarjeta-servicio">
+            <i class="fas fa-paint-brush"></i>
+            <h3>Branding & Diseño</h3>
+            <p>Identidad visual que comunica. Logotipos, guías de estilo y sistemas de diseño coherentes.</p>
+          </div>
+          <div class="tarjeta-servicio">
+            <i class="fas fa-chart-line"></i>
+            <h3>Estrategia Digital</h3>
+            <p>Analítica, SEO y marketing de contenidos para impulsar tu presencia online y alcanzar objetivos reales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portafolio -->
+    <section class="portafolio container">
+      <div class="seccion-titulo">
+        <h2>Proyectos recientes</h2>
+        <p>Transformamos ideas en resultados tangibles</p>
+      </div>
+      <div class="grid-proyectos">
+        <div class="proyecto-card">
+          <div class="proyecto-img">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="proyecto-info">
+            <h4>EcoMarket</h4>
+            <span>eCommerce sostenible</span>
+          </div>
+        </div>
+        <div class="proyecto-card">
+          <div class="proyecto-img">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="proyecto-info">
+            <h4>Nimbus App</h4>
+            <span>Plataforma SaaS</span>
+          </div>
+        </div>
+        <div class="proyecto-card">
+          <div class="proyecto-img">
+            <i class="fas fa-building"></i>
+          </div>
+          <div class="proyecto-info">
+            <h4>Arquia</h4>
+            <span>Sitio corporativo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer / Contacto -->
+  <footer class="contacto">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>◈ nexo</h3>
+          <p>Creatividad y tecnología unidas para construir marcas que lideran.</p>
+          <div class="iconos-sociales">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Enlaces</h3>
+          <a href="#">Sobre nosotros</a>
+          <a href="#">Servicios</a>
+          <a href="#">Proyectos</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h3>Contacto</h3>
+          <p><i class="fas fa-envelope" style="margin-right: 8px;"></i> hola@nexoagencia.com</p>
+          <p><i class="fas fa-phone-alt" style="margin-right: 8px;"></i> +34 910 123 456</p>
+          <p><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Madrid, España</p>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2025 Nexo Agencia Creativa. Todos los derechos reservados. Diseñado con precisión.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
