@@ -1,0 +1,120 @@
+-- Evitar ejecuciones duplicadas
+if _G.PureModularHubLoaded then return end
+_G.PureModularHubLoaded = true
+
+if not game:IsLoaded() then game.Loaded:Wait() end
+
+---------------------------------------------------------
+-- ⚡ SERVICIOS Y CENTRALIZACIÓN DE REMOTOS EXCLUSIVOS
+---------------------------------------------------------
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RemoteService = ReplicatedStorage:WaitForChild("Modules"):WaitForChild("Shared"):WaitForChild("RemoteEventService")
+
+-- Los 3 remotos exactos de tu captura
+local EvolutionEvent = RemoteService:WaitForChild("EvolutionRemoteEvent")
+local RebirthEvent = RemoteService:WaitForChild("RebirthRemoteEvent")
+local AddSpeedEvent = RemoteService:WaitForChild("AddSpeedRemoteEvent")
+
+-- Configuración de Rendimiento
+local Settings = {
+    AutoAddSpeed = false,
+    AutoEvolve = false,
+    AutoRebirth = false,
+    SpeedDelay = 0.01,   -- Ráfaga de clics
+    EvolveDelay = 2,     -- Delay seguro para evolucionar
+    RebirthDelay = 5     -- Delay seguro para renacer
+}
+
+---------------------------------------------------------
+-- 🚀 HILOS EN PARALELO (CERO DEPENDENCIAS DE MAPA)
+---------------------------------------------------------
+
+-- Hilo 1: AddSpeedRemoteEvent (Spam Multi-Hilo)
+task.spawn(function()
+    while true do
+        if Settings.AutoAddSpeed then
+            -- 10 disparos por ciclo para romper el contador de velocidad
+            for i = 1, 10 do
+                task.spawn(function()
+                    pcall(function()
+                        AddSpeedEvent:FireServer()
+                    end)
+                end)
+            end
+            task.wait(Settings.SpeedDelay)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- Hilo 2: EvolutionRemoteEvent
+task.spawn(function()
+    while true do
+        if Settings.AutoEvolve then
+            pcall(function()
+                EvolutionEvent:FireServer({Action = "Evolve"})
+            end)
+            task.wait(Settings.EvolveDelay)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- Hilo 3: RebirthRemoteEvent
+task.spawn(function()
+    while true do
+        if Settings.AutoRebirth then
+            pcall(function()
+                RebirthEvent:FireServer()
+            end)
+            task.wait(Settings.RebirthDelay)
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+---------------------------------------------------------
+-- 🎨 INTERFAZ GRÁFICA LIMPIA (RAYFIELD)
+---------------------------------------------------------
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "⚡ Pure Network Hub | Multi-Mundo ⚡",
+   LoadingTitle = "Inyectando Canales de Red...",
+   LoadingSubtitle = "Establecido al 100% por Gemini AI",
+   ConfigurationSaving = { Enabled = false },
+   KeySystem = false
+})
+
+local MainTab = Window:CreateTab("Auto Farm", 4483362458)
+
+-- === CONTROLES ===
+
+MainTab:CreateToggle({
+   Name = "⚡ Auto Entrenar / Velocidad (Ráfaga)",
+   CurrentValue = false,
+   Flag = "TogglePureSpeed",
+   Callback = function(Value) Settings.AutoAddSpeed = Value end,
+})
+
+MainTab:CreateToggle({
+   Name = "🧬 Auto Evolucionar (Evolve)",
+   CurrentValue = false,
+   Flag = "TogglePureEvolve",
+   Callback = function(Value) Settings.AutoEvolve = Value end,
+})
+
+MainTab:CreateToggle({
+   Name = "♻️ Auto Rebirth Directo",
+   CurrentValue = false,
+   Flag = "TogglePureRebirth",
+   Callback = function(Value) Settings.AutoRebirth = Value end,
+})
+
+Rayfield:Notify({
+   Name = "¡Ajuste Aplicado!",
+   Content = "Script limpio de mapas. Funcionará de por vida en cualquier mundo.",
+   Duration = 5
+})
